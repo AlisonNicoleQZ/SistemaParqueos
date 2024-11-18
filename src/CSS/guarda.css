@@ -1,0 +1,161 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa; /* Fondo claro */
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado */
+header {
+    background-color: #343a40; /* Oscuro */
+    color: white;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header img {
+    height: 50px;
+    border-radius: 50%; /* Imagen circular */
+}
+
+/* Títulos principales */
+h1, h2 {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Títulos por sección */
+h1 {
+    color: #343a40; /* Oscuro */
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.text-primary {
+    color: #007bff !important; /* Azul */
+}
+
+.text-danger {
+    color: #dc3545 !important; /* Rojo */
+}
+
+.text-info {
+    color: #17a2b8 !important; /* Azul claro */
+}
+
+.text-success {
+    color: #28a745 !important; /* Verde */
+}
+
+/* Formularios */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form .form-label {
+    font-weight: bold;
+}
+
+form .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+form .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+/* Botones */
+.btn {
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Secciones */
+section {
+    margin-bottom: 40px;
+}
+
+/* Dropdowns */
+.dropdown-menu {
+    padding: 15px;
+    width: 300%;
+    max-width: 500px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    margin-top: 10px;
+    display: none; /* Oculto por defecto */
+}
+
+.dropdown-menu.show {
+    display: block; /* Mostrar cuando se active */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        text-align: center;
+    }
+
+    header nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
