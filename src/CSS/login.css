@@ -1,0 +1,44 @@
+body {
+    background: url('https://www.ulacit.ac.cr/wp-content/uploads/MicrosoftTeams-image-3-4-2048x992.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con transparencia */
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Sombra elegante */
+}
+
+.card-header {
+    background: linear-gradient(45deg, #4b0082, #6a0dad); /* Degradado en tonos morados */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: white;
+    padding: 15px 0;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #6a0dad, #4b0082);
+    border: none;
+    color: white;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #4b0082, #6a0dad);
+    color: #fff;
+}
+
+#resultado-login {
+    font-size: 1rem;
+    font-weight: bold;
+}

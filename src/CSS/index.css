@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+button {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#resultado-ingreso,
+#resultado-egreso,
+#resultado-reporte {
+    font-size: 1rem;
+    font-weight: bold;
+    color: green;
+}

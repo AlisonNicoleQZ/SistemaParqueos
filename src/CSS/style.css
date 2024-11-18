@@ -1,0 +1,33 @@
+/* Estilos personalizados */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    margin-top: 20px;
+  }
+  
+  .dropdown-container .dropdown {
+    margin-bottom: 10px;
+  }
+  
+  .dropdown-menu {
+    display: none; /* Ocultar los dropdowns por defecto */
+  }
+  
+  .show {
+    display: block; /* Mostrar el dropdown seleccionado */
+  }
+  
+  button:focus {
+    outline: none; /* Eliminar el contorno de los botones al hacer clic */
+  }
+  
+  form {
+    margin-top: 15px;
+  }
+  
+  h4 {
+    margin-bottom: 20px;
+  }
+  
