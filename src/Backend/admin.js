@@ -121,22 +121,33 @@ async function addVehiculo(placa, cedula, carnet) {
     }
 }
 
-// Función para alternar la visibilidad de los menús desplegables
+// Alternar la visibilidad de los menús desplegables
 function toggleDropdown(dropdownId) {
     const dropdownMenu = document.getElementById(dropdownId);
-    const isVisible = dropdownMenu.style.display === 'block';
+    const isVisible = dropdownMenu.classList.contains('show');
 
     // Ocultar todos los menús desplegables
     const allDropdowns = document.querySelectorAll('.dropdown-menu');
     allDropdowns.forEach(menu => {
-        menu.style.display = 'none';
+        menu.classList.remove('show'); // Ocultar todos
     });
 
     // Mostrar el menú seleccionado si no estaba visible
     if (!isVisible) {
-        dropdownMenu.style.display = 'block';
+        dropdownMenu.classList.add('show'); // Mostrar el menú
     }
 }
+
+// Cerrar el menú desplegable si se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    const dropdowns = document.querySelectorAll('.dropdown-menu');
+    dropdowns.forEach(dropdown => {
+        if (!dropdown.contains(event.target) && !event.target.closest('.dropdown')) {
+            dropdown.classList.remove('show'); // Cerrar el menú si se hace clic fuera
+        }
+    });
+});
+
 
 // Cerrar el menú desplegable si se hace clic fuera de él
 document.addEventListener('click', function(event) {

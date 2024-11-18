@@ -18,9 +18,7 @@
                 </a>
             </div>
             <nav>
-                <a href="InicioGuardia.html" class="text-white mx-3 text-decoration-none">Inicio</a>
-                <a href="index.html" class="text-white mx-3 text-decoration-none">Control de Vehículos</a>
-                <a href="#" class="text-white mx-3 text-decoration-none">Reporte Uso</a>
+                <a href="login.html" class="text-white mx-3 text-decoration-none">Cerrar Sesión</a>
             </nav>
         </div>
     </header>
@@ -31,6 +29,10 @@
         <!-- Registro de Entrada de Vehículo -->
         <section id="seccion-ingreso" class="mb-5">
             <h2 class="text-primary text-center">Registro de Entrada de Vehículo</h2>
+
+            <!-- Contenedor para las alertas -->
+            <div id="alert-container"></div> <!-- Aquí se mostrarán las alertas -->
+
             <form id="form-ingreso" class="shadow p-4 bg-white rounded">
                 <div class="mb-3">
                     <label for="placa-ingreso" class="form-label">Número de Placa:</label>
@@ -60,15 +62,10 @@
                         <option value="">Selecciona una placa</option>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label for="parqueo-id-salida" class="form-label">ID de Parqueo:</label>
-                    <select id="parqueo-id-salida" name="parqueo_id" class="form-control" required>
-                        <option value="">Selecciona un parqueo</option>
-                    </select>
-                </div>
                 <button type="submit" class="btn btn-danger w-100">Registrar Salida</button>
             </form>
         </section>
+
 
         <!-- Agregar Usuario -->
         <section id="seccion-agregar-usuario" class="mb-5">
@@ -87,8 +84,12 @@
                     <input type="email" class="form-control" id="correo-usuario" required>
                 </div>
                 <div class="mb-3">
+                    <label for="carnet-usuario" class="form-label">Carnet:</label>
+                    <input type="text" class="form-control" id="carnet-usuario" required>
+                </div>
+                <div class="mb-3">
                     <label for="password-usuario" class="form-label">Contraseña:</label>
-                    <input type="password" class="form-control" id="password-usuario" required>
+                    <input type="password" class="form-control" id="password-usuario" required minlength="6">
                 </div>
                 <button type="submit" class="btn btn-info w-100">Agregar Usuario</button>
             </form>
