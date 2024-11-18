@@ -159,3 +159,15 @@ section {
         padding: 8px;
     }
 }
+
+#seccion-historial h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+}
+

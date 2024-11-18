@@ -110,10 +110,11 @@ async function registrarIngreso(placa, parqueoId) {
             return;
         }
 
-        // Registrar el ingreso con el UID del usuario
+        // Registrar el ingreso con el UID del usuario y el nombre del parqueo
         await addDoc(collection(db, "Usos"), {
             placa: placa,
             parqueoId: parqueoId,
+            parqueoNombre: parqueoData.nombre,  // Guardar el nombre del parqueo
             tipo: "entrada",
             fechaEntrada: new Date(),
             fechaSalida: 0,
@@ -131,7 +132,6 @@ async function registrarIngreso(placa, parqueoId) {
         showAlert("Hubo un error al registrar el ingreso.", "danger");
     }
 }
-
 
 function showAlert(message, type) {
     const container = document.getElementById('alert-container');
@@ -371,6 +371,57 @@ async function registrarVehiculo(placa, cedula, carnet) {
     }
 }
 
+async function obtenerHistorial() {
+    try {
+        const usosCollection = collection(db, "Usos");
+        const usosSnapshot = await getDocs(usosCollection);
+        const historialTable = document.getElementById('historial-table-body');
+
+        if (historialTable) {
+            historialTable.innerHTML = ''; // Limpiar la tabla antes de agregar los nuevos registros
+
+            // Verificar si hay datos en la consulta
+            if (usosSnapshot.empty) {
+                console.log("No se encontraron registros en la colección 'Usos'.");
+                return;
+            }
+
+            // Obtener los nombres de los parqueos de una vez
+            const parqueosSnapshot = await getDocs(collection(db, "parqueos"));
+            const parqueosMap = {};
+            parqueosSnapshot.forEach(parqueoDoc => {
+                parqueosMap[parqueoDoc.id] = parqueoDoc.data().nombre;
+            });
+
+            // Ahora recorremos los registros de usos
+            usosSnapshot.forEach(doc => {
+                const uso = doc.data();
+                const placa = uso.placa;
+                const parqueoId = uso.parqueoId;
+
+                // Si el parqueo no existe en el mapa, lo manejamos
+                const parqueoNombre = parqueosMap[parqueoId] || "Desconocido";
+
+                // Formatear las fechas
+                const fechaEntrada = uso.fechaEntrada.toDate().toLocaleString();
+                const fechaSalida = uso.fechaSalida !== 0 ? uso.fechaSalida.toDate().toLocaleString() : 'Pendiente';
+
+                // Crear la fila para la tabla
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${placa}</td>
+                    <td>${parqueoNombre}</td>
+                    <td>${fechaEntrada}</td>
+                    <td>${fechaSalida}</td>
+                `;
+                historialTable.appendChild(row);
+            });
+        }
+    } catch (error) {
+        console.error("Error al obtener el historial de usos:", error);
+    }
+}
+
 
 // Manejo del evento submit para el formulario de registrar vehículo
 document.getElementById('form-vehiculo').addEventListener('submit', async (e) => {
@@ -446,6 +497,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await obtenerVehiculos();
     await obtenerParqueos();
     await obtenerPlacasSalida();
+    await obtenerHistorial(); 
 });
 
 
