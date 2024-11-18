@@ -2,7 +2,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-
 // Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDl_TT0BmD5F1iBQO7kiy9O8FN4ig6dBz0",
@@ -12,22 +11,18 @@ const firebaseConfig = {
   messagingSenderId: "105950355460",
   appId: "1:105950355460:web:a691a1760bf194038f5551"
 };
-
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
 // Función para registrar cualquier tipo de usuario
 async function registrarUsuario(rol, nombre, cedula, correo, password) {
     try {
         // Crear el usuario en Firebase Authentication
         const userCredential = await createUserWithEmailAndPassword(auth, correo, password);
         const user = userCredential.user;
-
         // Usar el UID como el ID del documento en Firestore
         const docRef = doc(db, "Usuarios", user.uid); // El UID de Firebase Authentication como ID del documento
-
         // Agregar la información del usuario a Firestore sin agregar el UID como campo
         await setDoc(docRef, {
             nombre: nombre,
@@ -37,7 +32,6 @@ async function registrarUsuario(rol, nombre, cedula, correo, password) {
             rol: rol
             // El UID ya es el ID del documento, por lo que no es necesario incluirlo como campo
         });
-
         console.log(`${rol} registrado con ID:`, user.uid);
         alert(`${rol} registrado correctamente.`);
     } catch (error) {
@@ -60,7 +54,7 @@ async function registrarParqueo(nombre, espaciosDisponibles) {
       alert("Hubo un error al registrar el parqueo.");
     }
   }
-  
+
   // Obtener el formulario de parqueo y agregar el evento
   document.getElementById('form-parqueo').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -78,7 +72,6 @@ document.getElementById('form-admin').addEventListener('submit', function(event)
     const password = document.getElementById('password-admin').value;
     registrarUsuario(1, nombre, cedula, correo, password);
 });
-
 document.getElementById('form-guarda').addEventListener('submit', function(event) {
     event.preventDefault();
     const nombre = document.getElementById('nombre-guarda').value;
@@ -87,7 +80,6 @@ document.getElementById('form-guarda').addEventListener('submit', function(event
     const password = document.getElementById('password-guarda').value;
     registrarUsuario(2, nombre, cedula, correo, password);
 });
-
 document.getElementById('form-usuario').addEventListener('submit', function(event) {
     event.preventDefault();
     const nombre = document.getElementById('nombre-usuario').value;
@@ -96,7 +88,6 @@ document.getElementById('form-usuario').addEventListener('submit', function(even
     const password = document.getElementById('password-usuario').value;
     registrarUsuario(3, nombre, cedula, correo, password);
 });
-
 document.getElementById('form-vehiculo').addEventListener('submit', function(event) {
     event.preventDefault();
     const placa = document.getElementById('placa').value;
@@ -104,7 +95,6 @@ document.getElementById('form-vehiculo').addEventListener('submit', function(eve
     const carnet = document.getElementById('carnet-vehiculo').value;
     addVehiculo(placa, cedula, carnet);
 });
-
 // Función para registrar un vehículo
 async function addVehiculo(placa, cedula, carnet) {
     try {
@@ -120,35 +110,20 @@ async function addVehiculo(placa, cedula, carnet) {
         alert("Hubo un error al registrar el vehículo.");
     }
 }
-
-// Alternar la visibilidad de los menús desplegables
+// Función para alternar la visibilidad de los menús desplegables
 function toggleDropdown(dropdownId) {
     const dropdownMenu = document.getElementById(dropdownId);
-    const isVisible = dropdownMenu.classList.contains('show');
-
+    const isVisible = dropdownMenu.style.display === 'block';
     // Ocultar todos los menús desplegables
     const allDropdowns = document.querySelectorAll('.dropdown-menu');
     allDropdowns.forEach(menu => {
-        menu.classList.remove('show'); // Ocultar todos
+        menu.style.display = 'none';
     });
-
     // Mostrar el menú seleccionado si no estaba visible
     if (!isVisible) {
-        dropdownMenu.classList.add('show'); // Mostrar el menú
+        dropdownMenu.style.display = 'block';
     }
 }
-
-// Cerrar el menú desplegable si se hace clic fuera de él
-document.addEventListener('click', function(event) {
-    const dropdowns = document.querySelectorAll('.dropdown-menu');
-    dropdowns.forEach(dropdown => {
-        if (!dropdown.contains(event.target) && !event.target.closest('.dropdown')) {
-            dropdown.classList.remove('show'); // Cerrar el menú si se hace clic fuera
-        }
-    });
-});
-
-
 // Cerrar el menú desplegable si se hace clic fuera de él
 document.addEventListener('click', function(event) {
     const dropdowns = document.querySelectorAll('.dropdown-menu');

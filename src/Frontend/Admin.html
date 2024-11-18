@@ -6,34 +6,31 @@
   <title>Sistema de Parqueo - Administrador</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../CSS/style.css">
 </head>
-<body>
+<body class="bg-light">
   <!-- Encabezado -->
-  <header class="py-3 mb-4">
+  <header class="bg-dark text-white py-3 mb-4">
     <div class="container d-flex justify-content-between align-items-center">
-      <a href="#">
-        <img src="image/logo.png" alt="Logo" class="rounded-circle" style="height: 50px;">
-      </a>
+      <div>
+        <a href="#">
+          <img src="image/logo.png" alt="Logo" class="rounded-circle" style="height: 50px;">
+        </a>
+      </div>
       <nav>
         <a href="login.html" class="btn btn-outline-light btn-sm">Cerrar Sesión</a>
       </nav>
     </div>
   </header>
-
   <!-- Contenido Principal -->
   <div class="container">
-    <h2>Panel de Administración</h2>
-
-    <!-- Grid para Dropdowns -->
-    <div class="row g-4">
-      <!-- Primera Fila: 3 botones -->
-      <div class="col-md-4">
-        <button class="dropdown-toggle w-100" onclick="toggleDropdown('adminDropdown')">
+    <h2 class="text-center mb-4">Panel de Administración</h2>
+    <!-- Menú de opciones para el administrador -->
+    <div class="dropdown-container">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuAdmin" aria-expanded="false" onclick="toggleDropdown('adminDropdown')">
           Agregar Administrador
         </button>
         <div class="dropdown-menu" id="adminDropdown">
-          <!-- Formulario Administrador -->
           <form id="form-admin">
             <input type="hidden" value="1" id="rol-admin">
             <div class="mb-3">
@@ -52,17 +49,42 @@
               <label for="password-admin" class="form-label">Contraseña</label>
               <input type="password" class="form-control" id="password-admin" required>
             </div>
-            <button type="submit" class="btn w-100">Registrar Administrador</button>
+            <button type="submit" class="btn btn-primary">Registrar Administrador</button>
           </form>
         </div>
       </div>
-
-      <div class="col-md-4">
-        <button class="dropdown-toggle w-100" onclick="toggleDropdown('usuarioDropdown')">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuGuarda" aria-expanded="false" onclick="toggleDropdown('guardaDropdown')">
+          Agregar Guarda
+        </button>
+        <div class="dropdown-menu" id="guardaDropdown">
+          <form id="form-guarda">
+            <input type="hidden" value="2" id="rol-guarda">
+            <div class="mb-3">
+              <label for="nombre-guarda" class="form-label">Nombre Completo</label>
+              <input type="text" class="form-control" id="nombre-guarda" required>
+            </div>
+            <div class="mb-3">
+              <label for="cedula-guarda" class="form-label">Cédula</label>
+              <input type="text" class="form-control" id="cedula-guarda" required>
+            </div>
+            <div class="mb-3">
+              <label for="correo-guarda" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="correo-guarda" required>
+            </div>
+            <div class="mb-3">
+              <label for="password-guarda" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password-guarda" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar Guarda</button>
+          </form>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuUsuario" aria-expanded="false" onclick="toggleDropdown('usuarioDropdown')">
           Agregar Usuario
         </button>
         <div class="dropdown-menu" id="usuarioDropdown">
-          <!-- Formulario Usuario -->
           <form id="form-usuario">
             <input type="hidden" value="3" id="rol-usuario">
             <div class="mb-3">
@@ -85,40 +107,15 @@
               <label for="password-usuario" class="form-label">Contraseña</label>
               <input type="password" class="form-control" id="password-usuario" required>
             </div>
-            <button type="submit" class="btn w-100">Registrar Usuario</button>
+            <button type="submit" class="btn btn-primary">Registrar Usuario</button>
           </form>
         </div>
       </div>
-
-      <div class="col-md-4">
-        <button class="dropdown-toggle w-100" onclick="toggleDropdown('guardaDropdown')">
-          Agregar Guarda
-        </button>
-        <div class="dropdown-menu" id="guardaDropdown">
-          <form id="form-guarda">
-            <input type="hidden" value="2" id="rol-guarda">
-            <div class="mb-3">
-              <label for="nombre-guarda" class="form-label">Nombre Completo</label>
-              <input type="text" class="form-control" id="nombre-guarda" required>
-            </div>
-            <div class="mb-3">
-              <label for="cedula-guarda" class="form-label">Cédula</label>
-              <input type="text" class="form-control" id="cedula-guarda" required>
-            </div>
-            <button type="submit" class="btn w-100">Registrar Guarda</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Segunda Fila: 2 botones -->
-    <div class="row g-4 mt-2">
-      <div class="col-md-6">
-        <button class="dropdown-toggle w-100" onclick="toggleDropdown('vehiculoDropdown')">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuVehiculo" aria-expanded="false" onclick="toggleDropdown('vehiculoDropdown')">
           Registrar Vehículo
         </button>
         <div class="dropdown-menu" id="vehiculoDropdown">
-          <!-- Formulario Vehículo -->
           <form id="form-vehiculo">
             <div class="mb-3">
               <label for="placa" class="form-label">Placa</label>
@@ -132,17 +129,16 @@
               <label for="carnet-vehiculo" class="form-label">Número de Carnet (Usuario)</label>
               <input type="text" class="form-control" id="carnet-vehiculo" required>
             </div>
-            <button type="submit" class="btn w-100">Registrar Vehículo</button>
+            <button type="submit" class="btn btn-primary">Registrar Vehículo</button>
           </form>
         </div>
       </div>
-
-      <div class="col-md-6">
-        <button class="dropdown-toggle w-100" onclick="toggleDropdown('parqueoDropdown')">
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuParqueo" aria-expanded="false" onclick="toggleDropdown('parqueoDropdown')">
           Registrar Parqueo
         </button>
         <div class="dropdown-menu" id="parqueoDropdown">
-          <!-- Formulario Parqueo -->
           <form id="form-parqueo">
             <div class="mb-3">
               <label for="nombre-parqueo" class="form-label">Nombre del Parqueo</label>
@@ -152,15 +148,17 @@
               <label for="espacios-disponibles" class="form-label">Cantidad de Espacios Disponibles</label>
               <input type="number" class="form-control" id="espacios-disponibles" required>
             </div>
-            <button type="submit" class="btn w-100">Registrar Parqueo</button>
+            <button type="submit" class="btn btn-primary">Registrar Parqueo</button>
           </form>
         </div>
-      </div>
-    </div>
+      </div>  
   </div>
 
-  <!-- Scripts -->
+
+  <!-- Bootstrap JS y dependencias -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../Backend/admin.js"></script>
+  <!-- Agregar la función toggleDropdown -->
   <script>
     function toggleDropdown(dropdownId) {
       const dropdownMenu = document.getElementById(dropdownId);
