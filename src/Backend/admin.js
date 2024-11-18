@@ -46,6 +46,29 @@ async function registrarUsuario(rol, nombre, cedula, correo, password) {
     }
 }
 
+// Función para registrar un parqueo
+async function registrarParqueo(nombre, espaciosDisponibles) {
+    try {
+      const docRef = await addDoc(collection(db, "parqueos"), {
+        nombre: nombre,
+        espaciosDisponibles: espaciosDisponibles
+      });
+      console.log("Parqueo registrado con ID:", docRef.id);
+      alert("Parqueo registrado correctamente.");
+    } catch (error) {
+      console.error("Error al registrar el parqueo: ", error);
+      alert("Hubo un error al registrar el parqueo.");
+    }
+  }
+  
+  // Obtener el formulario de parqueo y agregar el evento
+  document.getElementById('form-parqueo').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const nombre = document.getElementById('nombre-parqueo').value;
+    const espaciosDisponibles = document.getElementById('espacios-disponibles').value;
+    registrarParqueo(nombre, espaciosDisponibles);
+  });
+
 // Obtener los formularios y agregar eventos
 document.getElementById('form-admin').addEventListener('submit', function(event) {
     event.preventDefault();

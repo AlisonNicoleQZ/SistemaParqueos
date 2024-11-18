@@ -140,7 +140,26 @@
         </div>
       </div>
     </div>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuParqueo" aria-expanded="false" onclick="toggleDropdown('parqueoDropdown')">
+          Registrar Parqueo
+        </button>
+        <div class="dropdown-menu" id="parqueoDropdown">
+          <form id="form-parqueo">
+            <div class="mb-3">
+              <label for="nombre-parqueo" class="form-label">Nombre del Parqueo</label>
+              <input type="text" class="form-control" id="nombre-parqueo" required>
+            </div>
+            <div class="mb-3">
+              <label for="espacios-disponibles" class="form-label">Cantidad de Espacios Disponibles</label>
+              <input type="number" class="form-control" id="espacios-disponibles" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar Parqueo</button>
+          </form>
+        </div>
+      </div>  
   </div>
+
 
   <!-- Bootstrap JS y dependencias -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
